@@ -1,0 +1,1 @@
+Provides manifests for ARGO CD applications

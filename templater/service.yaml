@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: templater
+  labels:
+    app: templater
+spec:
+  type: NodePort # Exposes the Service externally using a cloud provider's load balancer
+  selector:
+    app: templater # Must match the labels of the Pods you want to target (from Deployment)
+  ports:
+    - protocol: TCP
+      port: 80         # The port the Service will be accessible on externally
+      targetPort: 8080   # The port on the Pods (containerPort) that traffic should be forwarded to
+        # This should match the containerPort in your Deployment if Nginx listens on 80
+      # If Nginx listens on 8080 *inside* the container, change this to 8080

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: templater
+  labels:
+    app: templater
+spec:
+  replicas: 1 # Adjust the number of desired replicas
+  selector:
+    matchLabels:
+      app: templater
+  template:
+    metadata:
+      labels:
+        app: templater
+    spec:
+      containers:
+        - name: templater
+          image: docker.io/robinhunter/templater:latest # Replace with your Docker image
+          ports:
+            - containerPort: 80 # The port your Nginx container is listening on (from EXPOSE in Dockerfile)
+          resources:
+            requests:
+              memory: "8Mi"
+              cpu: "250m" # 0.25 CPU core
+            limits:
+              memory: "16Mi"
+              cpu: "500m" # 0.5 CPU core
