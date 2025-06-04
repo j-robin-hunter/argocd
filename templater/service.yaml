@@ -5,7 +5,7 @@ metadata:
   labels:
     app: templater
 spec:
-  type: NodePort # Exposes the Service externally using a cloud provider's load balancer
+  type: LoadBalancer # Exposes the Service externally using a cloud provider's load balancer
   selector:
     app: templater # Must match the labels of the Pods you want to target (from Deployment)
   ports:
