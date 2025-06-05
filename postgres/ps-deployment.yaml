@@ -13,7 +13,7 @@ spec:
         app: postgres
     spec:
       containers:
-        - name: example
+        - name: postgres
           image: 'postgres:17'
           imagePullPolicy: IfNotPresent
           ports:
