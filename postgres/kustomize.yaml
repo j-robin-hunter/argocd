@@ -8,4 +8,3 @@ resources:
   - pgadmin-configmap.yaml
   - pgadmin-deployment.yaml
   - pgadmin-service.yaml
-namespace: example
