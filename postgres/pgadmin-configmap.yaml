@@ -8,7 +8,7 @@ data:
    {
        "Servers": {
          "1": {
-           "Name": "PostgreSQL DB",
+           "Name": "PostgreSQL Database",
            "Group": "Servers",
            "Port": 5432,
            "Username": "robin",
