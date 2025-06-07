@@ -5,7 +5,7 @@ metadata:
   labels:
     app: templater
 spec:
-  replicas: 1 # Adjust the number of desired replicas
+  replicas: 2 # Adjust the number of desired replicas
   selector:
     matchLabels:
       app: templater
