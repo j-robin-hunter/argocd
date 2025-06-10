@@ -11,7 +11,9 @@ spec:
         autoscaling.knative.dev/minScale: "0"
     spec:
       containers:
-        - image: docker.io/robinhunter/my-func # This comes from the 'image' field in func.yaml
+        - name: my-func # This name usually comes from the 'name' field in func.yaml
+          image: docker.io/robinhunter/my-func # This comes from the 'image' field in func.yaml
+          imagePullPolicy: IfNotPresent # Ensures the image is pulled only if not present
           ports:
             - containerPort: 8080 # Knative services typically listen on port 8080
           securityContext:
