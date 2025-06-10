@@ -1,0 +1,46 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: my-func # This name usually comes from the 'name' field in func.yaml
+  # labels:
+  #   networking.knative.dev/visibility: cluster-local
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+    spec:
+      containers:
+        - image: docker.io/robinhunter/my-func # This comes from the 'image' field in func.yaml
+          ports:
+            - containerPort: 8080 # Knative services typically listen on port 8080
+          securityContext:
+            runAsUser: 1000 # Non-root user for security
+            runAsGroup: 3000 # Non-root group for security
+            runAsNonRoot: true # Ensures the container runs as a non-root user
+            seccompProfile:
+              type: RuntimeDefault
+            allowPrivilegeEscalation: false # Crucial: Prevent privilege escalation
+            capabilities:
+              drop:
+                - ALL
+          env:
+            - name: DB_HOST
+              value: "postgres.example.svc.cluster.local"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials 
+                  key: DB_USER       
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials 
+                  key: DB_PASSWORD
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_NAME
