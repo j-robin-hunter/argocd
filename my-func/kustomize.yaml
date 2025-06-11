@@ -1,2 +1,3 @@
 resources:
+  - my-func-secrets.yaml
   - deployment.yaml
