@@ -2,7 +2,7 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: my-func # This name usually comes from the 'name' field in func.yaml
-  annotations::
+  annotations:
     networking.knative.dev/visibility: externally
 spec:
   template:
