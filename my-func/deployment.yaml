@@ -2,8 +2,8 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: my-func # This name usually comes from the 'name' field in func.yaml
-  # labels:
-  #   networking.knative.dev/visibility: cluster-local
+  labels:
+    networking.knative.dev/visibility: externally
 spec:
   template:
     metadata:
