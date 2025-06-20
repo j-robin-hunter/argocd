@@ -10,4 +10,4 @@ spec:
    targetPort: http
  selector:
    app: pgadmin
- type: NodePort
+ type: LoadBalancer
